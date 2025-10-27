@@ -6,10 +6,12 @@ import '../../../theme/app_theme.dart';
 
 class SignupLinkWidget extends StatelessWidget {
   final VoidCallback onSignupTap;
+  final bool isSignup;
 
   const SignupLinkWidget({
     Key? key,
     required this.onSignupTap,
+    this.isSignup = false,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class SignupLinkWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'ยังไม่มีบัญชี? ',
+            isSignup ? 'มีบัญชีอยู่แล้ว? ' : 'ยังไม่มีบัญชี? ',
             style: AppTheme.lightTheme.textTheme.bodyMedium?.copyWith(
               color: AppTheme.getTextColor(context, secondary: true),
             ),
@@ -28,7 +30,7 @@ class SignupLinkWidget extends StatelessWidget {
           GestureDetector(
             onTap: onSignupTap,
             child: Text(
-              'สมัครสมาชิก',
+              isSignup ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก',
               style: AppTheme.lightTheme.textTheme.bodyMedium?.copyWith(
                 color: AppTheme.lightTheme.colorScheme.primary,
                 fontWeight: FontWeight.w600,
