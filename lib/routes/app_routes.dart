@@ -19,6 +19,8 @@ class AppRoutes {
   static const String postCreation = '/post-creation';
   static const String socialMediaDashboard = '/social-media-dashboard';
   static const String messagesInbox = '/messages-inbox';
+  static const String dashboard = '/dashboard';
+  static const String messages = '/messages';
 
   static Map<String, WidgetBuilder> routes = {
     initial: (context) => const SplashScreen(),
@@ -29,7 +31,8 @@ class AppRoutes {
     onboardingFlow: (context) => const OnboardingFlow(),
     postCreation: (context) => const PostCreation(),
     socialMediaDashboard: (context) => const SocialMediaDashboard(),
+    dashboard: (context) => const SocialMediaDashboard(),
     messagesInbox: (context) => const MessagesInbox(),
-    // TODO: Add your other routes here
+    messages: (context) => const MessagesInbox(),
   };
 }
