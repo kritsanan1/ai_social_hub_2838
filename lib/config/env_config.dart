@@ -27,6 +27,11 @@ class EnvConfig {
     'STRIPE_PUBLISHABLE_KEY',
     defaultValue: 'YOUR_STRIPE_PUBLISHABLE_KEY',
   );
+  
+  static const String stripeSecretKey = String.fromEnvironment(
+    'STRIPE_SECRET_KEY',
+    defaultValue: 'YOUR_STRIPE_SECRET_KEY',
+  );
 
   // App Configuration
   static const String appName = 'Contentflow Pro';
@@ -37,7 +42,8 @@ class EnvConfig {
     return supabaseUrl != 'YOUR_SUPABASE_URL' &&
         supabaseAnonKey != 'YOUR_SUPABASE_ANON_KEY' &&
         ayrshareApiKey != 'YOUR_AYRSHARE_API_KEY' &&
-        stripePublishableKey != 'YOUR_STRIPE_PUBLISHABLE_KEY';
+        stripePublishableKey != 'YOUR_STRIPE_PUBLISHABLE_KEY' &&
+        stripeSecretKey != 'YOUR_STRIPE_SECRET_KEY';
   }
 
   // Get missing configurations
@@ -52,6 +58,9 @@ class EnvConfig {
     }
     if (stripePublishableKey == 'YOUR_STRIPE_PUBLISHABLE_KEY') {
       missing.add('STRIPE_PUBLISHABLE_KEY');
+    }
+    if (stripeSecretKey == 'YOUR_STRIPE_SECRET_KEY') {
+      missing.add('STRIPE_SECRET_KEY');
     }
     return missing;
   }
