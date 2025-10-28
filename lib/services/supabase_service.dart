@@ -212,5 +212,23 @@ class SupabaseService {
   Future<void> updateSubscription(Map<String, dynamic> subscription) async {
     await client.from('subscriptions').upsert(subscription);
   }
+
+  /// Update user profile fields
+  Future<void> updateUserProfile(String userId, Map<String, dynamic> updates) async {
+    updates['updated_at'] = DateTime.now().toIso8601String();
+    await client.from('profiles').update(updates).eq('id', userId);
+  }
+
+  /// Get monthly posts count for subscription limits
+  Future<int> getMonthlyPostsCount(String userId) async {
+    final now = DateTime.now();
+    final startOfMonth = DateTime(now.year, now.month, 1);
+    final response = await client
+        .from('posts')
+        .select('id', const FetchOptions(count: CountOption.exact))
+        .eq('user_id', userId)
+        .gte('created_at', startOfMonth.toIso8601String());
+    return response.count ?? 0;
+  }
 }
 
